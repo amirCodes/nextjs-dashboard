@@ -1,7 +1,13 @@
-import Image from "next/image";
+import React from "react";
+import {Button} from "@/components/ui/button";
 
 export default function Home() {
   return (
-    <h1>Dashboard</h1>
+    <div>
+      <h1>Dashboard</h1>
+      <Button variant="destructive" size="lg">
+        Sara is beautiful
+      </Button>
+    </div>
   );
 }
