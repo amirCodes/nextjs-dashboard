@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "@/components/ui/toaster";
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
 
@@ -24,14 +25,14 @@ export default function RootLayout({
         <Navbar />
         <div className="flex">
           <div className="hidden md:block h-[100vh]">
-           <Sidebar />
+            <Sidebar />
           </div>
           <div className="w-full p-5 md:max-w-[10040px]">
-          {children}
+            {children}
+            <Toaster />
           </div>
         </div>
-       
-        </body>
+      </body>
     </html>
   );
 }
