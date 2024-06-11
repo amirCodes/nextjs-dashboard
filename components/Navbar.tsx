@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import ThemeToggler from "@/components/ThemeToggler";
 const Navbar = () => {
   const { setTheme } = useTheme()
 
@@ -28,6 +29,7 @@ const Navbar = () => {
       </Link>
       {/* Navbar : otyher top tabs if required*/}
       <div className="flex items-center justify-between">
+        <ThemeToggler />
       <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="outline" size="icon" className="bg-transparent border-none mr-5">
