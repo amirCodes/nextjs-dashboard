@@ -43,8 +43,11 @@ const PostsTable = ({ limit, title }: PostsTableProps) => {
         <TableBody>
           {filteredPosts.map((post) => (
             <TableRow key={post.id}>
-              <TableCell>{post.title}</TableCell>
+              <TableCell>{post.title}
+                
+              </TableCell>
               <TableCell className='hidden md:table-cell'>
+
                 {post.author}
               </TableCell>
               <TableCell className='text-right hidden md:table-cell'>
