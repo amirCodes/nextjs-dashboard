@@ -1,11 +1,23 @@
 import DashboardCard from "@/components/dashboard/DashboardCard";
 import AnalyticsChart from "@/components/dashboard/AnalyticsChart";
 import PostsTable from "@/components/posts/PostsTable";
+import { redirect } from 'next/navigation'
+
+import { createClient } from '@/utils/supabase/server'
 
 import { Folder, MessageCircle, Newspaper, User } from "lucide-react";
 import { Suspense } from "react";
 
-export default function Home() {
+export default async function Home() {
+  const supabase = createClient()
+
+  const { data, error } = await supabase.auth.getUser();
+  
+  if (error || !data?.user) {
+    redirect('/login')
+  }
+  
+  
   return (
     <>
       <div className="flex flex-col md:flex-row justify-between gap-5 mb-5">
