@@ -18,9 +18,21 @@ import {
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import ThemeToggler from "@/components/ThemeToggler";
+import { createClient } from "@/utils/supabase/client";
+// import { signOut } from "@/app/(auth)/login/actions";
 const Navbar = () => {
   const { setTheme } = useTheme();
-
+  async function signOut() {
+    const supabase = createClient();
+  
+    const { error } = await supabase.auth.signOut()
+    if (error) {
+      console.error('Error logging out:', error);
+    } else {
+      // redirect('/auth'); // Redirect to /auth after logging out;
+      console.log("yay you loged out ......")
+    }
+  }
   return (
     <div className="flex justify-between bg-primary dark:bg-salte-700  py-2 px-5">
       <Link href="/">
@@ -46,7 +58,10 @@ const Navbar = () => {
               <Link href="/profile">Profile</Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <Link href="/auth">Logout</Link>
+              <button onClick={signOut}>
+                {/* <Link href="/auth">Logout</Link> */}
+                Logout
+              </button>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
