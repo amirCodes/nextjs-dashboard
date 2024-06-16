@@ -48,8 +48,6 @@ const Navbar = () => {
             <DropdownMenuItem>
               <Link href="/auth">Logout</Link>
             </DropdownMenuItem>
-            <DropdownMenuItem>Team</DropdownMenuItem>
-            <DropdownMenuItem>Subscription</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
