@@ -1,4 +1,4 @@
-"use client";
+
 
 import * as React from "react";
 
@@ -6,7 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import logo from "@/images/logo0.png";
 import { Moon, Sun } from "lucide-react";
-import { useTheme } from "next-themes";
+// import { useTheme } from "next-themes";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -19,20 +19,17 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import ThemeToggler from "@/components/ThemeToggler";
 import { createClient } from "@/utils/supabase/client";
+import { redirect } from 'next/navigation'
 // import { signOut } from "@/app/(auth)/login/actions";
 const Navbar = () => {
-  const { setTheme } = useTheme();
-  async function signOut() {
-    const supabase = createClient();
-  
-    const { error } = await supabase.auth.signOut()
-    if (error) {
-      console.error('Error logging out:', error);
-    } else {
-      // redirect('/auth'); // Redirect to /auth after logging out;
-      console.log("yay you loged out ......")
-    }
-  }
+  // const { setTheme } = useTheme();
+  const logout = async () => {
+    "use server";
+    const supabase = await createClient();
+    await supabase.auth.signOut()
+    redirect("/auth");
+  };
+
   return (
     <div className="flex justify-between bg-primary dark:bg-salte-700  py-2 px-5">
       <Link href="/">
@@ -58,10 +55,14 @@ const Navbar = () => {
               <Link href="/profile">Profile</Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <button onClick={signOut}>
-                {/* <Link href="/auth">Logout</Link> */}
-                Logout
-              </button>
+              <form>
+                <button
+                  formAction={logout}
+                  className=" transition duration-100 ease-in-out"
+                >
+                  Logout
+                </button>
+              </form>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
