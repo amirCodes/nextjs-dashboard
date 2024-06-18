@@ -2,7 +2,7 @@
 
 export interface UserProfileType {
   id: string;
-  email: string;
+  email: string | null;
   phone: string | null;
   role: string;
   app_metadata: {

@@ -10,8 +10,9 @@ const UserProfile: React.FC = () => {
   const router = useRouter();
 
   useEffect(() => {
-    async function fetchData() {
+    async function fetchUserData() {
       const userData:any = await getUser();
+      
       console.log('User data:', userData);
       if (!userData) {
         router.push('/login'); // Redirect to login if no user data is found
@@ -19,7 +20,7 @@ const UserProfile: React.FC = () => {
         setUser(userData!);
       }
     }
-    fetchData();
+    fetchUserData();
   }, [router]);
 
   if (!user) {
